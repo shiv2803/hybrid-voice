@@ -1,0 +1,18 @@
+{
+  "conditions": [],
+  "parameters": {
+    "maxOnDeviceChars": {
+      "defaultValue": { "value": "240" },
+      "description": "Inputs longer than this many characters skip the on-device model and go to the cloud."
+    },
+    "maxOnDeviceWords": {
+      "defaultValue": { "value": "45" },
+      "description": "Inputs longer than this many words skip the on-device model and go to the cloud."
+    },
+    "cloudModel": {
+      "defaultValue": { "value": "gemini-3.8-flash" },
+      "description": "Gemini model used for cloud inference and as the hybrid fallback."
+    }
+  },
+  "version": { "versionNumber": "1" }
+}

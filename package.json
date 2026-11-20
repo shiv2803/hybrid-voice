@@ -1,0 +1,9 @@
+{
+  "name": "hybrid-voice",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/routing.test.mjs",
+    "serve": "npx --yes serve public -l 5173"
+  }
+}

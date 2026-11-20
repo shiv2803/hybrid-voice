@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="Push-to-talk voice assistant that answers on-device with Gemini Nano and falls back to Gemini in the cloud. Built with Firebase AI Logic." />
+  <title>Hybrid Voice — on-device first, cloud when needed</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%99%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Hybrid&nbsp;Voice</span>
+    </div>
+    <div class="chips" role="status" aria-live="polite">
+      <span class="chip" id="chipDevice">On-device: checking…</span>
+      <span class="chip" id="chipNet">Online</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="stage">
+      <h1>Talk. It answers where it makes sense.</h1>
+      <p class="lede">
+        Short questions are answered on this device by <strong>Gemini&nbsp;Nano</strong>.
+        Long, complex, or unsupported requests go to <strong>Gemini in the cloud</strong>.
+        Every answer carries a badge telling you which one spoke.
+      </p>
+
+      <div class="mic-wrap">
+        <button id="talk" class="mic" type="button" aria-label="Hold to talk" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 15a3.5 3.5 0 0 0 3.5-3.5v-5a3.5 3.5 0 1 0-7 0v5A3.5 3.5 0 0 0 12 15Z" />
+            <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3" />
+          </svg>
+        </button>
+        <span class="ring" aria-hidden="true"></span>
+      </div>
+
+      <p class="hint" id="hint">Hold the mic (or hold <kbd>Space</kbd>) and speak.</p>
+
+      <form id="typed" class="typed" autocomplete="off">
+        <label class="sr-only" for="text">Type your question</label>
+        <input id="text" name="text" type="text" placeholder="…or type your question and press Enter" maxlength="800" />
+        <button id="send" type="submit">Ask</button>
+      </form>
+      <p class="tiny" id="sttNote">Speech-to-text uses Chrome's Web Speech API, so voice input needs a connection; typed input works offline.</p>
+    </section>
+
+    <section class="log" id="log" aria-live="polite" aria-label="Conversation"></section>
+
+    <details class="diag" id="diag">
+      <summary>System status</summary>
+      <dl id="diagList"></dl>
+      <p class="tiny">
+        On-device inference needs Chrome 139+ on desktop with the Prompt API enabled
+        (<code>chrome://flags/#prompt-api-for-gemini-nano-multimodal-input</code>).
+      </p>
+    </details>
+  </main>
+
+  <footer>
+    <span>Firebase AI Logic · hybrid inference</span>
+    <span class="dot" aria-hidden="true">·</span>
+    <button id="mute" class="linkbtn" type="button" aria-pressed="false">Sound: on</button>
+    <span class="dot" aria-hidden="true">·</span>
+    <button id="clear" class="linkbtn" type="button">Clear</button>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
